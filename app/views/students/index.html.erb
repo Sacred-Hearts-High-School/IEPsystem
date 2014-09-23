@@ -1,0 +1,37 @@
+<% provide(:title, "學生資料管理") %>
+
+<h1>所有學生列表</h1>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>姓名</th>
+      <th>學號</th>
+      <th>資/障</th>
+      <th>分類</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @students.each do |student| %>
+      <tr>
+        <td><%= student.name %></td>
+        <td><%= student.no %></td>
+        <td><%= student.stu_type %></td>
+        <td><%= student.stu_class %></td>
+        <td><%= link_to '加入某班', :controller=>"students", :action=>"addc", :id=>student.id %></td>
+        <td><%= link_to '查看', student %></td>
+        <td><%= link_to '編輯', edit_student_path(student) %></td>
+        <td><%= link_to '刪除', student, method: :delete, data: { confirm: '本功能可能造成系統毀損，您確定嘛？' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to '新增一名學生', new_student_path, :class=>'btn btn-primary btn-lg' %>

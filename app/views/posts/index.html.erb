@@ -1,0 +1,26 @@
+<h1>最新消息</h1>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>標題</th>
+      <th>張貼人</th>
+      <th>編修時間</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @posts.each do |post| %>
+      <tr>
+        <td><%= post.title %></td>
+        <td><%= post.user.name %></td>
+        <td><%= post.updated_at.strftime("%Y/%m/%d %H:%M") %></td>
+        <td><%= link_to '查看', post %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+

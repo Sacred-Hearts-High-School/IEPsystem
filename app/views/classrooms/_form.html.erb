@@ -1,0 +1,30 @@
+<%= form_for(@classroom, :class=>"form-horizontal") do |f| %>
+  <% if @classroom.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@classroom.errors.count, "error") %> prohibited this classroom from being saved:</h2>
+
+      <ul>
+      <% @classroom.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+     <%= f.label "學期" %><br>
+     <%# 邏輯程式放在 app/helpers/classrooms_helper.rb  %>
+     <%= f.select :semester_id, semester_options %><br>
+  </div>
+  <div class="form-group">
+     <%= f.label "班級代號" %><br>
+     <%= f.number_field :num ,:placeholder=>"401" %><br>
+  </div>
+  <div class="form-group">
+     <%= f.label "中文班名"  %><br>
+     <%= f.text_field :name, :placeholder=>"高一正" %><br>
+  </div>
+  <div class="actions">
+     <%= f.submit "確認送出", :class=>"btn btn-default btn-lg" %>
+  </div>
+<% end %>

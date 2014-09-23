@@ -1,0 +1,64 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>姓名：</strong>
+  <%= @student.name %>
+</p>
+
+<p>
+  <strong>學號：</strong>
+  <%= @student.no %>
+</p>
+
+<p>
+  <strong>身分證字號：</strong>
+  <%= @student.pid %>
+</p>
+
+<p>
+  <strong>電子信箱：</strong>
+  <%= @student.email %>
+</p>
+
+<p>
+  <strong>資2/障1：</strong>
+  <%= @student.stu_type %>
+</p>
+
+<p>
+  <strong>障礙類別：</strong>
+  <%= @student.stu_class %>
+</p>
+
+<p>
+  <strong>障礙描述：</strong>
+  <%= @student.disable_desc %>
+</p>
+
+<p>
+  <strong>父親姓名：</strong>
+  <%= @student.father %>
+</p>
+
+<p>
+  <strong>父親手機：</strong>
+  <%= @student.father_phone %>
+</p>
+
+<p>
+  <strong>母親姓名：</strong>
+  <%= @student.mother %>
+</p>
+
+<p>
+  <strong>母親手機：</strong>
+  <%= @student.mother_phone %>
+</p>
+
+<p>
+  <strong>家中市話：</strong>
+  <%= @student.phone %>
+</p>
+
+<%= link_to '編輯', edit_student_path(@student) , :class=>"btn btn-default" %> |
+<%= link_to '返回', students_path  , :class=>"btn btn-default" %>

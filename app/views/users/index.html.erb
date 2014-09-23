@@ -1,0 +1,37 @@
+<h1>所有登入帳號清單</h1>
+<h3>本清單皆由使用者登入之後自動產生，管理者只需管理權限即可。</h3>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>姓名</th>
+      <th>電子郵件</th>
+      <th>角色</th>
+      <th>角色編號</th>
+      <th>啟用</th>
+      <th>管理者</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.name %></td>
+        <td><%= user.email %></td>
+        <td><%= user.role_id %></td>
+        <td><%= user.my_role_id %></td>
+        <td><%= user.enable %></td>
+        <td><%= user.is_admin %></td>
+        <td><%= link_to '查看', user %></td>
+        <td><%= link_to '編輯', edit_user_path(user) %></td>
+        <td><%= link_to '刪除', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to '新增帳號', new_user_path, :class=>"btn btn-primary" %>

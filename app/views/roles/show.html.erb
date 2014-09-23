@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>編號:</strong>
+  <%= @role.id %>
+</p>
+
+<p>
+  <strong>名稱:</strong>
+  <%= @role.name %>
+</p>
+
+<p>
+  <strong>描述:</strong>
+  <%= @role.desc %>
+</p>
+
+<%= link_to '編輯', edit_role_path(@role) , :class=>"btn btn-primary btn-lg" %> |
+<%= link_to '返回', roles_path  , :class=>"btn btn-primary btn-lg" %>

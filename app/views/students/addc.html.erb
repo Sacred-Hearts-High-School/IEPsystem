@@ -1,0 +1,28 @@
+<h1>新增一名學生</h1>
+
+
+<%= form_tag("dealaddc", :method=>"post") do %>
+
+  <div class="field">
+    姓名<br>
+    <%= text_field_tag 'name', @student.name %>
+  </div>
+  <div class="field">
+    學號 <br>
+    <%= text_field_tag 'no', @student.no %>
+  </div>
+  <div class="field">
+    加入班級的學期（例如1031 表103學年上學期） <br>
+    <%= collection_select "seme", "", semester_options, :last, :first %><b>
+  </div>
+  <div class="field">
+    加入班級的編號（例如 401 表該學期的高一正班）<br>
+    <%= text_field_tag "clas" %>
+  </div>
+  <div class="actions">
+    <%= submit_tag %>
+  </div>
+<% end %>
+
+
+<%= link_to '返回', students_path, :class=>"btn btn-default" %>

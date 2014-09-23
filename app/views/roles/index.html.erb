@@ -1,0 +1,31 @@
+<h1>所有角色列表</h1>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>編號</th>
+      <th>名稱</th>
+      <th>敘述</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @roles.each do |role| %>
+      <tr>
+        <td><%= role.id %></td>
+        <td><%= role.name %></td>
+        <td><%= role.desc %></td>
+        <td><%= link_to '查看', role %></td>
+        <td><%= link_to '編輯', edit_role_path(role) %></td>
+        <td><%= link_to '刪除', role, method: :delete, data: { confirm: '不可刪除，會造成系統損壞，你確定要刪除？' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to '新增一個角色', new_role_path, :class=>'btn btn-primary btn-lg' %>

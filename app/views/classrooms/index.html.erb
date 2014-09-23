@@ -1,0 +1,31 @@
+<h1>查看所有班級</h1>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>學期</th>
+      <th>編號</th>
+      <th>中文班名</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @classrooms.each do |classroom| %>
+      <tr>
+        <td><%= classroom.semester.try(:name) %></td>
+        <td><%= classroom.num %></td>
+        <td><%= classroom.name %></td>
+        <td><%= link_to '查看', classroom %></td>
+        <td><%= link_to '編輯', edit_classroom_path(classroom) %></td>
+        <td><%= link_to '刪除', classroom, method: :delete, data: { confirm: '刪除本資料可能造成系統毀損，請問確定刪除嗎？' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to '新增一個班級', new_classroom_path, :class=>"btn btn-default" %>

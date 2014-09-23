@@ -1,0 +1,37 @@
+<h1>張貼新文章</h1>
+
+<%= simple_form_for @post, :url=>admin_posts_path do |f| %>
+  <% if @post.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
+
+      <ul>
+      <% @post.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.input :title %><br>
+  </div>
+  <div class="field">
+    <%= f.input :content %><br>
+  </div>
+  <div class="field">
+    <%= f.input :taxonomies %><br>
+  </div>
+  <div class="field">
+    <%= f.input :permission %><br>
+  </div>
+  <div class="field">
+     張貼人： <%= @current_user.name %> <br>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+
+
+<%= link_to '返回', posts_path, :class=>"btn btn-primary" %>

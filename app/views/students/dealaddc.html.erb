@@ -1,0 +1,33 @@
+<h1>將學生加入班級 <%= @c.name %></h1> 
+
+目前本班已經有學生：
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>學期</th>
+      <th>班名</th>
+      <th>學生</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @sinc.each do |s| %>
+      <tr>
+        <td></td>
+        <td><%= s.classroom.try(:name) %></td>
+        <td><%= s.student.try(:name) %></td>
+        <td><%= link_to '查看', student %></td>
+        <td><%= link_to '編輯', edit_student_path(student) %></td>
+        <td><%= link_to '刪除', student, method: :delete, data: { confirm: '本功能可能造成系統毀損，您確定嘛？' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to '新增一名學生', new_student_path, :class=>'btn btn-primary btn-lg' %>

@@ -1,0 +1,6 @@
+<h1>編輯文章</h1>
+
+<%= render 'form' %>
+
+<%= link_to '查看', admin_post_path(@post.id), :class=>"btn btn-primary" %> |
+<%= link_to '返回', admin_posts_path, :class=>"btn btn-primary" %>

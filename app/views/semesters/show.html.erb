@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>學年：（數字）</strong>
+  <%= @semester.year %>
+</p>
+
+<p>
+  <strong>學期：(數字1,2）</strong>
+  <%= @semester.semester %>
+</p>
+
+<p>
+  <strong>中文全名：</strong>
+  <%= @semester.name %>
+</p>
+
+<%= link_to '編輯', edit_semester_path(@semester) , :class=>"btn btn-primary btn-lg" %> |
+<%= link_to '返回', semesters_path , :class=>"btn btn-primary btn-lg" %>

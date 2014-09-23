@@ -1,0 +1,31 @@
+<h1>列出所有學期資料</h1>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>學年度</th>
+      <th>學期</th>
+      <th>全名</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @semesters.each do |semester| %>
+      <tr>
+        <td><%= semester.year %></td>
+        <td><%= semester.semester %></td>
+        <td><%= semester.name %></td>
+        <td><%= link_to '查看', semester %></td>
+        <td><%= link_to '編輯', edit_semester_path(semester) %></td>
+        <td><%= link_to '刪除', semester, method: :delete, data: { confirm: '刪除本資料可能造成系統毀損，你確定要刪除？' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to '新增學期資料', new_semester_path, :class=>"btn btn-primary btn-lg"  %>

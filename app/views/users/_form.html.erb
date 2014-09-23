@@ -1,0 +1,44 @@
+<%= simple_form_for(@user, html: {class: 'form-horizontal'}) do |f| %>
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+      <ul>
+      <% @user.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.input :provider, label: '登入平台' %>
+  </div>
+  <div class="form-group">
+    <%= f.input :uid, label: 'UID' %>
+  </div>
+  <div class="form-group">
+    <%= f.input :name, label: '姓名' %>
+  </div>
+  <div class="form-group">
+    <%= f.input :email, label: '電子信箱' %>
+  </div>
+  <div class="form-group">
+    <%= f.input :oauth_token, label: '登入金鑰' %>
+  </div>
+  <div class="form-group">
+    <%= f.input :oauth_expires_at, label: '登入過期' %><br>
+  </div>
+  <div class="form-group">
+    <%= f.input :role_id %>
+  </div>
+  <div class="form-group">
+    <%= f.input :my_role_id, label: "對應編號" %><br>
+  </div>
+  <div class="form-group">
+     <%= f.input :is_admin, :as=>:boolean, :wrapper=>:checkbox, label: "管理者" %><br>
+  </div>
+  <div class="form-group">
+    <%= f.button :submit %>
+  </div>
+<% end %>

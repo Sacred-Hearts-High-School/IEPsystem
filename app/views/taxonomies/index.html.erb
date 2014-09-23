@@ -1,0 +1,29 @@
+<h1>所有標籤列表</h1>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>標籤</th>
+      <th>連結文章</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @taxonomies.each do |taxonomy| %>
+      <tr>
+        <td><%= taxonomy.name %></td>
+        <td><%= taxonomy.post_id %></td>
+        <td><%= link_to '查看', taxonomy %></td>
+        <td><%= link_to '編輯', edit_taxonomy_path(taxonomy) %></td>
+        <td><%= link_to '刪除', taxonomy, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to '新增標籤', new_taxonomy_path, :class=>"btn btn-primary" %>

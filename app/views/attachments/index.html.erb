@@ -1,0 +1,45 @@
+<h1>列出所有上傳附件</h1>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>學期</th>
+      <th>班級</th>
+      <th>學生</th>
+      <th>教師</th>
+      <th>文章</th>
+      <th>標題</th>
+      <th>描述</th>
+      <th>檔名</th>
+      <th>類別</th>
+      <th>狀態</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @attachments.each do |attachment| %>
+      <tr>
+        <td><%= attachment.classroom_id %></td>
+        <td><%= attachment.classroom_id %></td>
+        <td><%= attachment.student_id %></td>
+        <td><%= attachment.teacher_id %></td>
+        <td><%= attachment.post_id %></td>
+        <td><%= attachment.title %></td>
+        <td><%= attachment.content %></td>
+        <td><%= attachment.filename %></td>
+        <td><%= attachment.type %></td>
+        <td><%= attachment.status %></td>
+        <td><%= link_to '查看', attachment %></td>
+        <td><%= link_to '編輯', edit_attachment_path(attachment) %></td>
+        <td><%= link_to '刪除', attachment, method: :delete, data: { confirm: '確定刪除這個檔案？' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to '新增檔案', new_attachment_path, :class=>"btn btn-primary" %>

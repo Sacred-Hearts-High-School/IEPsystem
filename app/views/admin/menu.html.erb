@@ -1,0 +1,11 @@
+<h2>管理者選單</h2>
+
+
+以下列印表單的功能，請使用 M$ Windows 下的 chrome 並取消「頁首」、「頁尾」，可得最佳列印效果。
+<br><br>
+
+<%= link_to "列印會議通知", { :controller=>"admin", :action=>"print1", :seme=>"1031" }, :class=>"btn btn-default btn-lg" %>
+<%= link_to "列印簽到表", { :controller=>"admin", :action=>"print2", :seme=>"1031" }, :class=>"btn btn-default btn-lg" %>
+<%= link_to "列印學生名單", { :controller=>"admin", :action=>"print_students", :seme=>"1031" }, :class=>"btn btn-default btn-lg" %>
+
+

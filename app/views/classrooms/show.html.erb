@@ -1,0 +1,107 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>學期：</strong>
+  <%= @classroom.semester.try(:name)  %>
+</p>
+
+<p>
+  <strong>班級代號：</strong>
+  <%= @classroom.num %>
+</p>
+
+<p>
+  <strong>班級名稱：</strong>
+  <%= @classroom.name %>
+</p>
+
+<%= link_to '編輯', edit_classroom_path(@classroom), :class=>"btn btn-default" %> |
+<%= link_to '返回', classrooms_path, :class=>"btn btn-default" %>
+
+<h2>在這個班級中有以下特教生：</h2>
+<table class="table table-striped">
+   <thead>
+      <tr>
+      <th>班級</th>
+      <th>學生</th>
+      <th></th>
+      <th></th>
+   </tr>
+   </thead>
+   <tbody>
+   <% @sinc.each do |s| %>
+      <tr>
+         <td>
+            <%= s.classroom.try(:name) %>
+         </td>
+         <td>
+            <%= s.student.try(:name) %>
+         </td>
+
+         <td><%= link_to '查看學生', student_path(s.student.try(:id)) %></td>
+         <td><%= button_to '移除此學生', :controller=>"classrooms", :action=>"remove_a_student", :id=>s.id  %></td>
+
+      </tr>
+   <% end %> 
+   </tbody>
+</table>
+
+<%= form_tag("add_students", :method=>"post") do %>
+    <div class="field">
+       在本班新增學生，請輸入學生姓名（可輸入多位，以空白分隔）：<br>
+       <%= text_field_tag "students" %>
+       <%= hidden_field_tag :id, @classroom.id %>
+    </div>
+    <div class="actions">
+       <%= submit_tag "新增學生", :class=>"btn btn-primary" %>
+    </div>
+<% end %>
+
+
+<h2>在這個班級中有以下任課老師：</h2>
+<table class="table table-striped">
+   <thead>
+      <tr>
+      <th>班級</th>
+      <th>教師</th>
+      <th>任教科目</th>
+      <th></th>
+      <th></th>
+      <th></th>
+   </tr>
+   </thead>
+   <tbody>
+   <% @tinc.each do |t| %>
+      <tr>
+         <td>
+            <%= t.classroom.try(:name) %>
+         </td>
+         <td>
+            <%= t.teacher.try(:name) %>
+         </td>
+         <td>
+            <%= t.subject %>
+         </td>
+
+         <td>
+            <%= link_to '編輯', :controller=>"admin", :action=>"edit_tinc", :id=>t.id %>
+         </td>
+
+         <td><%= link_to '查看老師', teacher_path(t.teacher.try(:id)) %></td>
+         <td><%= button_to '移除此老師', :controller=>"classrooms", :action=>"remove_a_teacher", :id=>t.id , :cid=>t.classroom_id  %></td>
+
+      </tr>
+   <% end %> 
+   </tbody>
+</table>
+
+<%= form_tag("add_teachers", :method=>"post") do %>
+    <div class="field">
+       在本班新增任課教師，請輸入教師姓名（可輸入多位，以空白分隔）：<br>
+       <%= text_field_tag "teachers" %>
+       <%= hidden_field_tag :id, @classroom.id %>
+    </div>
+    <div class="actions">
+       <%= submit_tag "新增教師", :class=>"btn btn-primary" %>
+    </div>
+<% end %>

@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>標籤：</strong>
+  <%= @taxonomy.name %>
+</p>
+
+<p>
+  <strong>連結文章：</strong>
+  <%= @taxonomy.post_id %>
+</p>
+
+<%= link_to '編輯', edit_taxonomy_path(@taxonomy), :class=>"btn btn-primary" %> |
+<%= link_to '返回', taxonomies_path, :class=>"btn btn-primary" %>

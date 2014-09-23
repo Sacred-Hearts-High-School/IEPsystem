@@ -1,0 +1,65 @@
+<%= form_for(@student) do |f| %>
+  <% if @student.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@student.errors.count, "error") %> prohibited this student from being saved:</h2>
+
+      <ul>
+      <% @student.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label "姓名" %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label "學號" %><br>
+    <%= f.text_field :no %>
+  </div>
+  <div class="field">
+    <%= f.label "身分證字號" %><br>
+    <%= f.text_field :pid %>
+  </div>
+  <div class="field">
+    <%= f.label "電子信箱" %><br>
+    <%= f.text_field :email %>
+  </div>
+  <div class="field">
+    <%= f.label "資2/障1" %><br>
+    <%= f.number_field :stu_type %>
+  </div>
+  <div class="field">
+    <%= f.label "障礙類別" %><br>
+    <%= f.text_field :stu_class %>
+  </div>
+  <div class="field">
+    <%= f.label "障礙描述" %><br>
+    <%= f.text_area :disable_desc %>
+  </div>
+  <div class="field">
+    <%= f.label "父親姓名" %><br>
+    <%= f.text_field :father %>
+  </div>
+  <div class="field">
+    <%= f.label "父親電話 09xx-xxxxxx" %><br>
+    <%= f.text_field :father_phone %>
+  </div>
+  <div class="field">
+    <%= f.label "母親姓名" %><br>
+    <%= f.text_field :mother %>
+  </div>
+  <div class="field">
+    <%= f.label "母親電話" %><br>
+    <%= f.text_field :mother_phone %>
+  </div>
+  <div class="field">
+    <%= f.label "家中市話 05-5xxxxxx" %><br>
+    <%= f.text_field :phone %>
+  </div>
+  <div class="actions">
+     <%= f.submit %>
+  </div>
+<% end %>

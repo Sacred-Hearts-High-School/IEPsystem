@@ -1,0 +1,18 @@
+
+
+<% i=0 %>
+<% @tinc.each do |t| %>
+   <h2><%= @semesters[0].name %> 期初IEP擬定會議 開會通知</h2>
+   <h3>敬邀 <%= t.teacher.try(:name) %> 老師</h3>
+   <ul>
+      <li> 時間：103年9月11日（星期四）17:15 放學後</li>
+      <li> 地點：聖心大樓地下會議室</li>
+   </ul>
+   敬請準時與會，謝謝！<br>
+   請注重特教生隱私權，勿於學生面前提及本會議及相關內容。<br>
+   輔導室特教組敬上
+   <br>
+   <br>
+   <% i=i+1 %>
+   <%= "<P STYLE=\"page-break-before: always;\"></P>".html_safe if (i%4) == 0 %>
+<% end %>

@@ -1,0 +1,35 @@
+<% provide(:title, "教師資料管理") %>
+
+<h1>所有教師列表</h1>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>姓名</th>
+      <th>電子信箱</th>
+      <th>科目1</th>
+      <th>科目2</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @teachers.each do |teacher| %>
+      <tr>
+        <td><%= teacher.name %></td>
+        <td><%= teacher.email %></td>
+        <td><%= teacher.subject1 %></td>
+        <td><%= teacher.subject2 %></td>
+        <td><%= link_to '查看', teacher %></td>
+        <td><%= link_to '編輯', edit_teacher_path(teacher) %></td>
+        <td><%= link_to '刪除', teacher, method: :delete, data: { confirm: '這功能可能造成系統損壞，您確定嘛？' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to '新增一位教師', new_teacher_path, :class=>'btn btn-primary btn-lg' %>

@@ -1,0 +1,23 @@
+<%= form_tag "/admin/save_tinc", :class=>"form-horizontal" do %>
+
+  <div class="form-group">
+     班級<br>
+     <%= hidden_field_tag :id, @tinc.id %>
+     <%= @tinc.classroom.try(:name) %><br>
+  </div>
+  <div class="form-group">
+     教師 <br>
+     <%= @tinc.teacher.try(:name) %><br>
+  </div>
+  <div class="form-group">
+     教授科目<br>
+     <%= text_field_tag :subject, @tinc.subject %><br>
+  </div>
+  <div class="form-group">
+     屬性 （導師0、專任1、資源小組2）<br>
+     <%= text_field_tag :role, @tinc.role %><br>
+  </div>
+  <div class="actions">
+     <%= submit_tag "確認送出", :class=>"btn btn-default btn-lg" %>
+  </div>
+<% end %>
