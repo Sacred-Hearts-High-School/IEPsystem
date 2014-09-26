@@ -28,8 +28,11 @@ class ApplicationController < ActionController::Base
 
   def my_layout_setting
      if logged_in? 
-        "admin" if current_user.is_admin
-        "application"
+        if current_user.is_admin
+           "admin"
+        else
+           "application"
+        end
      else
         "application"
      end

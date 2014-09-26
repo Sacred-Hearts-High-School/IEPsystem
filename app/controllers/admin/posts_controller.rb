@@ -11,6 +11,8 @@ class Admin::PostsController < ApplicationController
   # GET /posts/1
   # GET /posts/1.json
   def show
+    @attachments = Attachment.where("post_id=?", @post.id)
+    @students = Student.all
   end
 
   # GET /posts/new
@@ -46,6 +48,48 @@ class Admin::PostsController < ApplicationController
         format.json { render json: @post.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def download
+    @attachment = Attachment.find(params[:id])
+    @file = 'data/' + @attachment.filename
+    send_file @file, :x_sendfile=>true
+  end
+
+  def upload
+    @post = Post.find(params[:id])
+    file = params[:datafile]
+
+    orig_name =  file.original_filename
+    ext_name = File.extname(orig_name)
+    name = File.basename(orig_name, ext_name)
+
+    # 檔案放在 ~/IEPsystem/data
+    directory = "data"
+    # create the file path
+    path = File.join(directory, orig_name)
+
+    # 判斷是否有同名的檔案
+    i=1
+    while File.exist?(path)
+       path = File.join(directory, name+"("+i.to_s+")"+ext_name)
+       i+=1
+    end
+
+    # write the file
+    File.open(path, "wb") { |f| f.write(file.read) }
+
+    # 寫入資料庫
+    @attachment = Attachment.new
+    @attachment.post_id = @post.id
+    if params[:title]
+       @attachment.title = params[:title] 
+    else
+       @attachment.title = "無標題"
+    end
+    @attachment.filename = File.basename(path) 
+    @attachment.save
+    redirect_to admin_post_path(@post.id), notice: '成功上傳檔案！ 檔名：'+orig_name
   end
 
   # PATCH/PUT /posts/1
