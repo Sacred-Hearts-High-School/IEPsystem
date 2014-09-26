@@ -1,28 +1,9 @@
-== README
+輔導室特教組網站
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+本網站使用 Ruby on Rails 建置
 
-Things you may want to cover:
+預期目標是內含部落格與 IEP個案管理系統。
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+希望能夠嘉惠其他學校的特教組。
 
 
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.

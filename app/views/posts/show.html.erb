@@ -1,30 +1,25 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Title:</strong>
-  <%= @post.title %>
-</p>
+<div class="panel panel-default">
+  <div class="panel-heading">
+     <h3 class="panel-title"><%= @post.title %></h3>
+  </div>
+  <div class="panel-body">
+  <%= @post.content.html_safe %>
+  </div>
+  <div class="panel-footer">
+  <%= @post.user.name %>
+  <%= @post.updated_at %>
+  <br>
+  標籤：<%= @post.taxonomies %>
+  </div>
 
-<p>
-  <strong>Content:</strong>
-  <%= @post.content %>
-</p>
+</div>
 
-<p>
-  <strong>User:</strong>
-  <%= @post.user_id %>
-</p>
+  <%= link_to '返回', posts_path, :class=>"btn btn-primary" %>
 
-<p>
-  <strong>標籤:</strong>
-  <%= @post.taxonomies %>
-</p>
-
-
-<p>
-  <strong>Permission:</strong>
-  <%= @post.permission %>
-</p>
-
-<%= link_to 'Edit', edit_post_path(@post) %> |
-<%= link_to 'Back', posts_path %>
+<ul>
+<%= @att.each do |a| %>
+   <li><%= link_to a.title, {:controller=>"admin/posts", :action=>"download", :id=>a.id }  %> <%= a.filename %></li>
+<% end %>
+</ul>

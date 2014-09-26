@@ -37,6 +37,8 @@ IEPsystem::Application.routes.draw do
   get 'admin/:seme/print2' => 'admin#print2'
   get 'admin/:seme/print_students' => 'admin#print_students'
 
+  post 'admin/posts/upload' => 'admin/posts#upload'
+  get 'admin/posts/download' => 'admin/posts#download'
   namespace :admin do
      resources :posts
   end
