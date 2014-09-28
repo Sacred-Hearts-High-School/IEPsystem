@@ -16,10 +16,12 @@
 
 </div>
 
-  <%= link_to '返回', posts_path, :class=>"btn btn-primary" %>
-
+相關附件：
 <ul>
 <%= @att.each do |a| %>
    <li><%= link_to a.title, {:controller=>"admin/posts", :action=>"download", :id=>a.id }  %> <%= a.filename %></li>
 <% end %>
 </ul>
+
+  <%= link_to '返回', posts_path, :class=>"btn btn-primary" %>
+

@@ -92,6 +92,16 @@ class Admin::PostsController < ApplicationController
     redirect_to admin_post_path(@post.id), notice: '成功上傳檔案！ 檔名：'+orig_name
   end
 
+
+  def deletefile
+    @attachment = Attachment.find(params[:id]) 
+    post = @attachment.post_id
+    filename = @attachment.filename
+    File.delete("data/"+filename)
+    @attachment.destroy
+    redirect_to admin_post_path(post), notice: '成功刪除檔案！ 檔名：'+filename
+  end
+
   # PATCH/PUT /posts/1
   # PATCH/PUT /posts/1.json
   def update

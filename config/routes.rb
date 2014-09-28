@@ -39,6 +39,7 @@ IEPsystem::Application.routes.draw do
 
   post 'admin/posts/upload' => 'admin/posts#upload'
   get 'admin/posts/download' => 'admin/posts#download'
+  get 'admin/posts/deletefile' => 'admin/posts#deletefile'
   namespace :admin do
      resources :posts
   end
