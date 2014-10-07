@@ -1,0 +1,26 @@
+<h1>IEP檔案上傳任務</h1>
+<br><br>
+<%= @task.teacher.name %>老師您好！
+<%= @task.content %>
+
+請確定您現在準備要完成的任務細節如下：
+
+<ol>
+   <li>班級： <%= @task.classroom.name %></li>
+   <li>學生： <%= @task.student.name %></li>
+   <li>教師： <%= @task.teacher.name %></li>
+   <li>類型： 103學年度上學期期初 IEP </li>
+</ol>
+
+您可以從這裡下載本學期 IEP 空白檔案進行修改。
+
+<br><br>
+如果老師任課的科目不須撰寫IEP，也請老師多留意該生上課的狀況，與身體健康是否不適。
+
+<br><br>
+<%= form_tag "upload", multipart: true do %> 
+   <%= hidden_field_tag 'token', @task.token %>
+   <%= file_field_tag 'datafile' %></p>
+   <%= submit_tag "上傳IEP檔案", class: "btn btn-primary" %>
+   <%= submit_tag "我的任課科目不須撰寫IEP", data: { confirm: "您的科目是否有經過會議決議，確定不須撰寫IEP？"}, class: "btn btn-warning" %>
+<% end %>

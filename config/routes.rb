@@ -27,6 +27,16 @@ IEPsystem::Application.routes.draw do
   post 'classrooms/add_students' => 'classrooms#add_students'
   post 'classrooms/add_teachers' => 'classrooms#add_teachers'
 
+  get 'tasks/my' => 'tasks#my'
+  get 'tasks/:token' => 'tasks#show'
+  post 'tasks/upload' => 'tasks#upload'
+
+  get 'admin/edit_task/:id' => 'admin#edit_task'
+  delete 'admin/delete_task/:id' => 'admin#delete_task'
+  post 'admin/create_tasks' => 'admin#create_tasks'
+  get 'admin/list_tasks' => 'admin#list_tasks'
+  get 'admin/list_taskgroups' => 'admin#list_taskgroups'
+  get 'admin/menu' => 'admin#menu'
   get 'admin' => 'admin#menu'
   get 'admin/menu' => 'admin#menu'
   get 'admin/:id/edit_tinc' => 'admin#edit_tinc'

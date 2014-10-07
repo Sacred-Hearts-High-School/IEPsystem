@@ -1,0 +1,19 @@
+<h1>恭喜！本任務似乎完成了！</h1>
+
+<br><br>
+<%= @task.teacher.name %>老師您好！
+
+本任務細節如下：
+
+<ol>
+   <li>班級： <%= @task.classroom.name %></li>
+   <li>學生： <%= @task.student.name %></li>
+   <li>教師： <%= @task.teacher.name %></li>
+   <li>標題： <%= @task.title %> </li>
+</ol>
+
+<span class="label label-info">處理狀態</span> <%= "老師宣稱本任務不須執行。" if @task.status == 50 %>
+
+<br><br>
+如果老師任課的科目不須撰寫IEP，也請老師多留意該生上課的狀況，與身體健康是否不適。
+

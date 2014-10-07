@@ -1,0 +1,29 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  taskgroup_id: 1
+  classroom_id: 1
+  student_id: 1
+  teacher_id: 1
+  post_id: 1
+  title: MyString
+  content: MyText
+  filename: MyString
+  type: 1
+  status: 1
+  comment: MyText
+  token: MyString
+
+two:
+  taskgroup_id: 1
+  classroom_id: 1
+  student_id: 1
+  teacher_id: 1
+  post_id: 1
+  title: MyString
+  content: MyText
+  filename: MyString
+  type: 1
+  status: 1
+  comment: MyText
+  token: MyString

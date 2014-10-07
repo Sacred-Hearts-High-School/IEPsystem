@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140916021311) do
+ActiveRecord::Schema.define(version: 20141007010005) do
 
   create_table "attachments", force: true do |t|
     t.integer  "classroom_id"
@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(version: 20140916021311) do
     t.string   "title"
     t.text     "content"
     t.string   "filename"
-    t.integer  "type"
+    t.integer  "genus"
     t.integer  "status"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -90,6 +90,30 @@ ActiveRecord::Schema.define(version: 20140916021311) do
     t.integer  "teacher_id"
     t.string   "subject"
     t.integer  "role"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "taskgroups", force: true do |t|
+    t.string   "title"
+    t.text     "content"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "tasks", force: true do |t|
+    t.integer  "taskgroup_id"
+    t.integer  "classroom_id"
+    t.integer  "student_id"
+    t.integer  "teacher_id"
+    t.integer  "post_id"
+    t.string   "title"
+    t.text     "content"
+    t.string   "filename"
+    t.integer  "genus"
+    t.integer  "status"
+    t.text     "comment"
+    t.string   "token"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

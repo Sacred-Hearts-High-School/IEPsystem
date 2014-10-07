@@ -2,6 +2,66 @@ class AdminController < ApplicationController
 
    before_action :login_required, :admin_required
 
+   def list_taskgroups
+      @taskgroups = Taskgroup.all
+   end
+
+   def edit_task
+   end
+
+   def delete_task
+      @task = Task.find(params[:id])
+      @task.destroy
+      redirect_to "/admin/list_tasks"
+   end
+
+   def create_tasks
+
+      # 找出當前學期，這裡要修改！
+      @seme = Semester.find(5)
+      # 找出所有本學期的班級
+      @classrooms = Classroom.where("semester_id=?",@seme.id)
+
+      @classrooms.each do |c|
+         # 找出所有班級內的學生跟老師
+         @sinc = SInC.where("classroom_id=?",c.id)
+         @tinc = TInC.where("classroom_id=?",c.id)
+
+
+         @sinc.each do |s|
+            @post = Post.new
+            @post.title = @seme.name + c.name + s.student.name + "期初IEP計畫"
+            @post.content = "期初IEP計畫"
+            @post.user_id = current_user.id
+            @post.permission = 30
+            @post.taxonomies = "IEP"
+            @post.save!
+
+            @taskgroup = Taskgroup.new
+            @taskgroup.title = @seme.name + c.name + s.student.name + "期初IEP計畫"
+            @taskgroup.save!
+
+            @tinc.each do |t|
+               @task = Task.new
+               @task.taskgroup_id = @taskgroup.id
+               @task.classroom_id = c.id
+               @task.student_id = s.student.id
+               @task.teacher_id = t.teacher.id
+               @task.post_id = @post.id
+               @task.title = @seme.name + c.name + s.student.name + "期初IEP計畫-" + t.teacher.name
+               @task.status = 0
+               @task.save!
+            end
+         end
+      end
+
+      redirect_to "/admin/list_tasks"
+   end
+
+   def list_tasks
+      @tasks = Task.all
+   end
+
    def index
       redirect_to "/admin/menu"
    end
