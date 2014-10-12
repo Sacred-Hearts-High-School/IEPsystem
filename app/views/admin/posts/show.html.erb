@@ -17,7 +17,7 @@
 
 相關附件：
 <ul>
-<%= @attachments.each do |attach| %>
+<% @attachments.each do |attach| %>
    <li><%= link_to attach.title+"(檔名："+attach.filename+"）", {:controller=>"admin/posts", :action=>"download", :id=>attach.id }  %> 
        <%= link_to '刪除', {:controller=>"admin/posts", :action=>"deletefile", :id=>attach.id } , data: { confirm: '確定刪除這個檔案？' } , :class=>"btn btn-danger btn-xs" %>
    </li>

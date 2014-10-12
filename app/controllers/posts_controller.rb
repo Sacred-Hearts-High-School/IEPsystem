@@ -4,7 +4,13 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.all
+    if current_user.nil?
+       @posts = Post.where("permission=0")
+    else
+       @posts = Post.where("permission<=30")
+    end
+
+    # 這裡要再修改，user增加permission 欄位
   end
 
   def guest

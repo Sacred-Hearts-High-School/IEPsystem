@@ -2,6 +2,14 @@ class AdminController < ApplicationController
 
    before_action :login_required, :admin_required
 
+   def mailer
+      @tasks = Task.where("status<=40")
+      @tasks.each do |t|
+         UserMailer.iep1_email(t.id).deliver
+      end
+      redirect_to "/admin/list_tasks", notice: "任務通知寄信已經完成!"
+   end
+
    def list_taskgroups
       @taskgroups = Taskgroup.all
    end

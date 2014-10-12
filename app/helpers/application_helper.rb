@@ -14,7 +14,9 @@ module ApplicationHelper
          <li><a href=\"/admin/menu\">列印各式表單</a></li>
          <li><a href=\"/signout\">登出系統</a></li>".html_safe
       when current_user
-         "<li><a href=\"/signout\">登出系統</a></li>".html_safe
+         "<li><a href=\"/posts\">查看文章</a></li>
+         <li><a href=\"/tasks/my\">查看#{current_user.name}的任務</a></li>
+         <li><a href=\"/signout\">登出系統</a></li>".html_safe
       else
          "<li><a href=\"/auth/google_oauth2\">本校教師登入</a></li>".html_safe
       end
@@ -35,7 +37,7 @@ module ApplicationHelper
       "http://special.shsh.ylc.edu.tw:8080"
     else
       # Our dev & test URL
-      "http://163.27.231.5:8080"
+      "http://special.shsh.ylc.edu.tw:8080"
     end
   end
 

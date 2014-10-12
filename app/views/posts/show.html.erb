@@ -18,7 +18,7 @@
 
 相關附件：
 <ul>
-<%= @att.each do |a| %>
+<% @att.each do |a| %>
    <li><%= link_to a.title+"（檔名："+a.filename+"）", {:controller=>"admin/posts", :action=>"download", :id=>a.id }  %> </li>
 <% end %>
 </ul>

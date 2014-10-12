@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+
+      <%= @task.teacher.name %>老師：
+      <br><br>
+      請協助完成以下任務
+      <br>
+      <h3><%= @task.title %></h3>
+
+      更多的指示，請前往以下網址：
+
+      <br><br>
+      http://special.shsh.ylc.edu.tw:8080/tasks/<%= @task.token %>
+
+      <br><br>
+      特教組敬上
+
+  </body>
+</html>

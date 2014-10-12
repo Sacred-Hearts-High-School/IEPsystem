@@ -17,10 +17,16 @@ class TasksController < ApplicationController
 
    def upload
 
+      if current_user.nil?   
+         username = "未登入使用者"
+      else
+         username = current_user.name
+      end
+
       if params[:commit]=="我的任課科目不須撰寫IEP"
          @task.update_attribute(:status,50)
          @task.post.update_attribute(:content, @task.post.content + 
-                                     "<br>" + current_user.name + "更新狀態：該科不須撰寫IEP。<br>")
+                      "<br>" + username + "更新狀態：該科不須撰寫IEP。<br>")
          msg = '任務資料已經更新！'
       elsif params[:datafile] == nil
          msg = "您似乎沒有先選擇要上傳的檔案？"
@@ -60,7 +66,8 @@ class TasksController < ApplicationController
 
          # 已經處理尚未審核
          @task.update_attribute(:status,60)
-         @task.post.content += current_user.name + "已上傳檔案："+@attachment.filename+"<br>"
+         @task.post.update_attribute(:content, @task.post.content +
+          "<br>" + username + "已上傳檔案："+@attachment.filename+"<br>")
 
          msg = "檔案已經上傳！ 檔名：" + @attachment.filename
       end

@@ -31,6 +31,7 @@ IEPsystem::Application.routes.draw do
   get 'tasks/:token' => 'tasks#show'
   post 'tasks/upload' => 'tasks#upload'
 
+  get 'admin/mailer' => 'admin#mailer'
   get 'admin/edit_task/:id' => 'admin#edit_task'
   delete 'admin/delete_task/:id' => 'admin#delete_task'
   post 'admin/create_tasks' => 'admin#create_tasks'

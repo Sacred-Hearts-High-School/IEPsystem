@@ -12,7 +12,17 @@
    <li>標題： <%= @task.title %> </li>
 </ol>
 
-<span class="label label-info">處理狀態</span> <%= "老師宣稱本任務不須執行。" if @task.status == 50 %>
+<span class="label label-info">處理狀態</span> 
+<%= 
+   case @task.status
+   when 50 
+      "老師宣稱本任務不須執行。" 
+   when 60
+      link_to "老師已上傳檔案，可點此查看。", :controller=>"posts", :action=>"show", :id=>@task.post.id
+   else
+      "狀態不明"
+   end
+%>
 
 <br><br>
 如果老師任課的科目不須撰寫IEP，也請老師多留意該生上課的狀況，與身體健康是否不適。

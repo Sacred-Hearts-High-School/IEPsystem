@@ -7,5 +7,6 @@
 <%= link_to "列印會議通知", { :controller=>"admin", :action=>"print1", :seme=>"1031" }, :class=>"btn btn-default btn-lg" %>
 <%= link_to "列印簽到表", { :controller=>"admin", :action=>"print2", :seme=>"1031" }, :class=>"btn btn-default btn-lg" %>
 <%= link_to "列印學生名單", { :controller=>"admin", :action=>"print_students", :seme=>"1031" }, :class=>"btn btn-default btn-lg" %>
+<%= link_to "寄發任務通知", { :controller=>"admin", :action=>"mailer"}, :class=>"btn btn-default btn-lg", data: { confirm: "本動作將寄發大量信件給所有尚未完成任務的老師，您確定嗎？" } %>
 
 

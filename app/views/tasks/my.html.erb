@@ -24,7 +24,19 @@
         <td><%= t.post_id %></td>
         <td><%= link_to t.title, "/tasks/"+t.token %></td>
         <td><%= t.genus %></td>
-        <td><%= t.status ? t.status : "尚未處理" %></td>
+        <td><%= 
+           case t.status
+           when 0..40
+              "尚未完成"
+           when 50
+              "不需處理"
+           when 60
+              "已上傳"
+           else
+              t.status
+           end
+        %>
+
         <td><%= t.updated_at.strftime("%Y/%m/%d %H:%M") %></td>
       </tr>
     <% end %>

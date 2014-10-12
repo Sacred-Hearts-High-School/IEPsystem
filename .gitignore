@@ -18,4 +18,8 @@
 # possible passwords
 /config/initializers/omniauth.rb
 /config/database.yml
+/config/environments/development.rb
+
+# attachment files
+/data
 

@@ -1,4 +1,22 @@
 IEPsystem::Application.configure do
+
+
+  # for my mailer. by TaichiS 2014
+  config.action_mailer.delivery_method = :smtp
+
+  config.action_mailer.smtp_settings = {
+      :address => "smtp.gmail.com",
+      :port => "587",
+      :domain => "gmail.com",
+      :authentication => "plain",
+      :user_name => "taichis@shsh.ylc.edu.tw",
+      :password => "mitvzwahhalijurn",
+      :enable_starttls_auto => true
+  }
+
+  config.action_mailer.default_url_options = {host: "special.shsh.ylc.edu.tw:8080"}
+
+
   # Settings specified here will take precedence over those in config/application.rb.
 
   # In the development environment your application's code is reloaded on
@@ -14,7 +32,7 @@ IEPsystem::Application.configure do
   config.action_controller.perform_caching = false
 
   # Don't care if the mailer can't send.
-  config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.raise_delivery_errors = true
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log

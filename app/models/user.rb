@@ -12,9 +12,8 @@ class User < ActiveRecord::Base
          user.oauth_token = auth.credentials.token
          user.oauth_expires_at = Time.at(auth.credentials.expires_at)
 
-         # 判斷是否在本校教師或學生名單中
-         @teacher = User.find_by(email: user.email)
-         @student = User.find_by(email: user.email)
+         # 判斷是否在本校教師名單中
+         @teacher = Teacher.find_by(email: user.email)
          if @teacher
             user.role_id = 1
             user.my_role_id = @teacher.id
