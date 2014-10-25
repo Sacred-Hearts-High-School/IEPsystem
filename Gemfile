@@ -1,6 +1,8 @@
 source 'https://rubygems.org'
 
 
+gem 'tinymce-rails'
+gem 'tinymce-rails-langs'
 gem 'simple_form'
 gem 'omniauth'
 gem 'omniauth-google-oauth2'

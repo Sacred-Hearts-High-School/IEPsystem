@@ -1,0 +1,9 @@
+menu: false
+  - file
+toolbar: 
+  - styleselect fontsizeselect | bold italic removeformat | bullist numlist outdent indent | undo redo | image link hr
+plugins: 
+  - image
+  - link
+  - lists
+  - hr

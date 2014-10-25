@@ -1,4 +1,4 @@
-<%= simple_form_for @post, :url=>admin_post_path(@post.id) do |f| %>
+<%= simple_form_for @post, :html=>{:class=>'form-horizontal'}, :url=>admin_post_path(@post.id) do |f| %>
   <% if @post.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
@@ -12,19 +12,23 @@
   <% end %>
 
   <div class="field">
-    <%= f.input :title %><br>
+     <%= f.input :title, :label=>"標題", :input_html=>{:class=>"form-control"} %><br>
   </div>
   <div class="field">
-    <%= f.input :content %><br>
+     <%= f.input :content, :label=>"內文", :input_html=>{:class=>"tinymce post span6", :rows=>'20', :col=>'40'  } %><br>
+     <%= tinymce :language=>'zh_TW' %>
   </div>
 
-  <div class="field">
-    <%= f.input :taxonomies %><br>
+  <div class="row">
+     <div class="col-xs-6">
+        <%= f.input :taxonomies, :label=>"標籤", :input_html=>{:class=>"form-control"} %><br>
+     </div>
+     <div class="col-xs-2">
+        <%= f.input :permission, :label=>"權限", :input_html=>{:class=>"form-control"} %><br>
+     </div>
   </div>
-  <div class="field">
-    <%= f.input :permission %><br>
-  </div>
+
   <div class="actions">
-    <%= f.submit %>
+     <%= f.submit "更新文章", :class=>'btn btn-primary' %>
   </div>
 <% end %>

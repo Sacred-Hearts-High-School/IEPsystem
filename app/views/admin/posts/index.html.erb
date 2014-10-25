@@ -15,12 +15,11 @@
   <tbody>
     <% @posts.each do |post| %>
       <tr>
-        <td><%= post.title %></td>
+        <td><%= link_to post.title, admin_post_path(post.id) %></td>
         <td><%= post.user.name %></td>
         <td><%= post.updated_at.strftime("%Y/%m/%d %H:%M") %></td>
-        <td><%= link_to '查看', admin_post_path(post.id) %></td>
-        <td><%= link_to '編輯', edit_admin_post_path(post.id) %></td>
-        <td><%= link_to '刪除', admin_post_path(post.id), method: :delete, data: { confirm: "您確定要刪除此篇貼文？"} %></td>
+        <td><%= link_to "<span class='glyphicon glyphicon-pencil'>".html_safe, edit_admin_post_path(post.id) %></td>
+        <td><%= link_to "<span class='glyphicon glyphicon-trash'>".html_safe, admin_post_path(post.id), method: :delete, data: { confirm: "您確定要刪除此篇貼文？"} %></td>
       </tr>
     <% end %>
   </tbody>

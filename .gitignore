@@ -19,6 +19,7 @@
 /config/initializers/omniauth.rb
 /config/database.yml
 /config/environments/development.rb
+/config/environments/product.rb
 
 # attachment files
 /data

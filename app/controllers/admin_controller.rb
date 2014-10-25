@@ -35,7 +35,6 @@ class AdminController < ApplicationController
          @sinc = SInC.where("classroom_id=?",c.id)
          @tinc = TInC.where("classroom_id=?",c.id)
 
-
          @sinc.each do |s|
             @post = Post.new
             @post.title = @seme.name + c.name + s.student.name + "期初IEP計畫"
@@ -59,6 +58,20 @@ class AdminController < ApplicationController
                @task.title = @seme.name + c.name + s.student.name + "期初IEP計畫-" + t.teacher.name
                @task.status = 0
                @task.save!
+               
+               # 這一段還沒測試過
+               if t.role ==0  # 導師的會議記錄
+                  @task2 = Task.new
+                  @task2.taskgroup_id = @taskgroup.id
+                  @task2.classroom_id = c.id
+                  @task2.student_id = s.student.id
+                  @task2.teacher_id = t.teacher.id
+                  @task2.post_id = @post.id
+                  @task2.title = @seme.name + c.name + s.student.name + "期初IEP計畫會議記錄(導師"+t.teacher.name+")"
+                  @task2.status = 0
+                  @task2.save!
+               end
+
             end
          end
       end

@@ -18,7 +18,7 @@ class TasksController < ApplicationController
    def upload
 
       if current_user.nil?   
-         username = "未登入使用者"
+         username = @task.teacher.name + "*"
       else
          username = current_user.name
       end
