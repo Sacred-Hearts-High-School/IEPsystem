@@ -14,7 +14,7 @@ IEPsystem::Application.configure do
       :enable_starttls_auto => true
   }
 
-  config.action_mailer.default_url_options = {host: "special.shsh.ylc.edu.tw:8080"}
+  config.action_mailer.default_url_options = {host: "special.shsh.ylc.edu.tw"}
 
 
   # Settings specified here will take precedence over those in config/application.rb.

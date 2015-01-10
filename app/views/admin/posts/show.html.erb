@@ -34,7 +34,28 @@
 <% end %>
 
 <br><br>
+<div class="well">
+   <% @comments.each do |c| %>
+            <span class="label label-default">
+         <span class="glyphicon glyphicon-user"></span>
+         <strong><%= c.teacher.name %></strong>
+         </span>
+         <small class="text-success">&nbsp;<%= c.updated_at.strftime("%Y/%m/%d %H:%M") %></small><br /><br />
+         <%= c.content %>
+         <br /><br />
+      <% end %>
+</div>
 
+
+<%= form_tag "comment", class: 'form-horizontal' do %>
+   <%= hidden_field_tag 'id', @post.id %>
+   <%= text_area_tag :content, "", placeholder:"請輸入文章留言，至少25字...", class: "form-control", rows: "3" %>
+   <br />
+   <%= submit_tag "提交我的留言", class: "btn btn-primary" %>
+<% end %>
+
+      
+<br /><br />
 <%= link_to '編輯', edit_admin_post_path(@post.id), :class=>"btn btn-primary" %> |
 <%= link_to '返回', admin_posts_path , :class=>"btn btn-primary" %>
 

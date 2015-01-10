@@ -23,5 +23,17 @@
 <% end %>
 </ul>
 
+<div class="well">
+<% @comments.each do |c| %>
+      <span class="label label-default">
+      <span class="glyphicon glyphicon-user"></span>
+      <strong><%= c.teacher.name %></strong> 
+      </span>
+      <small class="text-success">&nbsp;<%= c.updated_at.strftime("%Y/%m/%d %H:%M") %></small><br /><br />
+      <%= c.content %>
+      <br /><br />
+<% end %>
+</div>
+
   <%= link_to '返回', posts_path, :class=>"btn btn-primary" %>
 

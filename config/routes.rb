@@ -30,11 +30,13 @@ IEPsystem::Application.routes.draw do
   get 'tasks/my' => 'tasks#my'
   get 'tasks/:token' => 'tasks#show'
   post 'tasks/upload' => 'tasks#upload'
+  post 'tasks/comment' => 'tasks#comment'
 
   get 'admin/mailer' => 'admin#mailer'
   get 'admin/edit_task/:id' => 'admin#edit_task'
   delete 'admin/delete_task/:id' => 'admin#delete_task'
-  post 'admin/create_tasks' => 'admin#create_tasks'
+  get 'admin/create_tasks' => 'admin#create_tasks'
+  get 'admin/create_tasks2/:id' => 'admin#create_tasks2'
   get 'admin/list_tasks' => 'admin#list_tasks'
   get 'admin/list_taskgroups' => 'admin#list_taskgroups'
   get 'admin/menu' => 'admin#menu'
@@ -49,6 +51,7 @@ IEPsystem::Application.routes.draw do
   get 'admin/:seme/print_students' => 'admin#print_students'
 
   post 'admin/posts/upload' => 'admin/posts#upload'
+  post 'admin/posts/comment' => 'admin/posts#comment'
   get 'admin/posts/download' => 'admin/posts#download'
   get 'admin/posts/deletefile' => 'admin/posts#deletefile'
   namespace :admin do

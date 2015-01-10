@@ -1,6 +1,6 @@
 class TasksController < ApplicationController
 
-   before_action :set_task, only: [:show,:upload]
+   before_action :set_task, only: [:show,:comment,:upload]
 
    def my
       @teacher = Teacher.find_by(email: current_user.email)
@@ -8,11 +8,45 @@ class TasksController < ApplicationController
    end
 
    def show
-      if @task.status >= 40  # 表示不須處理
-         render "dealt" and return
-      else
-         render 
+
+      # task 及 comment 一定要倚賴 post
+      @comments = Comment.where("post_id=?",@task.post_id)
+
+      case @task.genus
+      when 1
+         if @task.status < 40    # 大於 40 表示不需處理
+            render
+         else
+            render "dealt" and return
+         end
+      when 2
+         if @task.status < 40
+            render "iep2"
+         else
+            render "dealt" and return
+         end
+      when 8
+         render "comment"
       end
+
+   end
+
+   def comment
+
+      @task.update_attribute(:status,50)
+
+      # 新增一則留言
+      @comment = Comment.new
+      @comment.teacher_id = @task.teacher_id
+      @comment.post_id = @task.post_id
+      @comment.content = params[:content]
+      if @comment.save
+         @task.update_attribute(:status,90)
+         redirect_to "/tasks/"+params[:token], :flash=>{:success=>"您已經順利留言！"}
+      else
+         redirect_to "/tasks/"+params[:token], :flash=>{:error=>"留言失敗，因為字數不足！"}
+      end
+
    end
 
    def upload

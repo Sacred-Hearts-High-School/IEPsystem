@@ -19,6 +19,14 @@
       "老師宣稱本任務不須執行。" 
    when 60
       link_to "老師已上傳檔案，可點此查看。", :controller=>"posts", :action=>"show", :id=>@task.post.id
+   when 49
+      "本任務逾期未處理，管理者已經關閉任務。"
+   when 80
+      "已經處理但審核未通過"
+   when 90
+      "已經處理且審核通過"
+   when 100
+      "已結案"
    else
       "狀態不明"
    end

@@ -3,9 +3,12 @@ class AdminController < ApplicationController
    before_action :login_required, :admin_required
 
    def mailer
-      @tasks = Task.where("status<=40")
+      @tasks = Task.where("status=0")
       @tasks.each do |t|
-         UserMailer.iep1_email(t.id).deliver
+         if UserMailer.iep1_email(t.id).deliver
+            t.status = t.status + 1
+            t.save!
+         end
       end
       redirect_to "/admin/list_tasks", notice: "任務通知寄信已經完成!"
    end
@@ -23,6 +26,7 @@ class AdminController < ApplicationController
       redirect_to "/admin/list_tasks"
    end
 
+   # 建立期初IEP檔案上傳任務
    def create_tasks
 
       # 找出當前學期，這裡要修改！
@@ -40,6 +44,7 @@ class AdminController < ApplicationController
             @post.title = @seme.name + c.name + s.student.name + "期初IEP計畫"
             @post.content = "期初IEP計畫"
             @post.user_id = current_user.id
+            @post.teacher_id = current_user.my_role_id
             @post.permission = 30
             @post.taxonomies = "IEP"
             @post.save!
@@ -54,6 +59,7 @@ class AdminController < ApplicationController
                @task.classroom_id = c.id
                @task.student_id = s.student.id
                @task.teacher_id = t.teacher.id
+               @task.content = @seme.name + "期初IEP計畫"
                @task.post_id = @post.id
                @task.title = @seme.name + c.name + s.student.name + "期初IEP計畫-" + t.teacher.name
                @task.status = 0
@@ -66,12 +72,71 @@ class AdminController < ApplicationController
                   @task2.classroom_id = c.id
                   @task2.student_id = s.student.id
                   @task2.teacher_id = t.teacher.id
+                  @task2.content = @seme.name + "期初IEP導師記錄"
                   @task2.post_id = @post.id
                   @task2.title = @seme.name + c.name + s.student.name + "期初IEP計畫會議記錄(導師"+t.teacher.name+")"
                   @task2.status = 0
                   @task2.save!
                end
 
+            end
+         end
+      end
+
+      redirect_to "/admin/list_tasks"
+   end
+
+   # 建立期末IEP檔案上傳及會議留言任務
+   def create_tasks2
+
+      # 找出當前學期
+      @seme = Semester.find(params[:id])
+      # 找出所有本學期的班級
+      @classrooms = Classroom.where("semester_id=?",@seme.id)
+
+      @classrooms.each do |c|
+         # 找出所有班級內的學生跟老師
+         @sinc = SInC.where("classroom_id=?",c.id)
+         @tinc = TInC.where("classroom_id=?",c.id)
+
+         @sinc.each do |s|
+            @post = Post.new
+            @post.title = @seme.name + c.name + s.student.name + "期末IEP評量"
+            @post.content = "期末IEP評量"
+            @post.user_id = current_user.id
+            @post.teacher_id = current_user.my_role_id
+            @post.permission = 30
+            @post.taxonomies = "IEP"
+            @post.save!
+
+            @taskgroup = Taskgroup.new
+            @taskgroup.title = @seme.name + c.name + s.student.name + "期末IEP評量"
+            @taskgroup.save!
+
+            @tinc.each do |t|
+               @task = Task.new
+               @task.taskgroup_id = @taskgroup.id
+               @task.classroom_id = c.id
+               @task.student_id = s.student.id
+               @task.teacher_id = t.teacher.id
+               @task.content = @seme.name + "期末IEP評量"
+               @task.post_id = @post.id
+               @task.title = @seme.name + c.name + s.student.name + "期末IEP評量上傳-" + t.teacher.name
+               @task.status = 0
+               @task.genus = 2 
+               @task.save!
+               
+               @task2 = Task.new
+               @task2.taskgroup_id = @taskgroup.id
+               @task2.classroom_id = c.id
+               @task2.student_id = s.student.id
+               @task2.teacher_id = t.teacher.id
+               @task2.content = @seme.name + "期末IEP會議"
+               @task2.post_id = @post.id
+               @task2.title = @seme.name + c.name + s.student.name + "期末IEP會議-" + t.teacher.name
+               @task2.status = 0
+               @task2.genus = 8 
+               @task2.save!
             end
          end
       end

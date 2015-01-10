@@ -1,12 +1,12 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>學年：（數字）</strong>
+  <strong>學年：</strong>
   <%= @semester.year %>
 </p>
 
 <p>
-  <strong>學期：(數字1,2）</strong>
+  <strong>學期：</strong>
   <%= @semester.semester %>
 </p>
 
@@ -15,5 +15,7 @@
   <%= @semester.name %>
 </p>
 
-<%= link_to '編輯', edit_semester_path(@semester) , :class=>"btn btn-primary btn-lg" %> |
-<%= link_to '返回', semesters_path , :class=>"btn btn-primary btn-lg" %>
+<%= link_to '編輯', edit_semester_path(@semester) , :class=>"btn btn-primary" %> |
+<%= link_to '返回', semesters_path , :class=>"btn btn-primary" %> 
+ |
+ <%= link_to '產生期初IEP任務', { :controller=>"admin", :action=>"create_tasks2", :id=>@semester.id }, :class=>"btn btn-primary" %>

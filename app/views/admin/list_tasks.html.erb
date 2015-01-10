@@ -30,7 +30,7 @@
         <td><%= t.genus %></td>
         <td><%= t.status %></td>
         <td><%= t.updated_at.strftime("%Y/%m/%d %H:%M") %></td>
-        <td><%= link_to '編輯', "admin/edit_task/"+t.id.to_s %></td>
+        <td><%= link_to '編輯', "/admin/edit_task/"+t.id.to_s %></td>
         <td><%= link_to '刪除', "/admin/delete_task/"+t.id.to_s, method: :delete, data: { confirm: "您確定要刪除此任務？" } %></td>
       </tr>
     <% end %>

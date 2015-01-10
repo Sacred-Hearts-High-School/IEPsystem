@@ -1,0 +1,30 @@
+<h1>期末IEP檢討會 會議室</h1>
+<h2> <%= @task.title %> </h2>
+<br><br>
+<%= @task.teacher.name %>老師您好！<br /><br />
+
+這是一個線上會議的系統，我們正在進行期末IEP檢討會，請先確定您沒有進錯會議室。（再次檢查上方標題）。
+<br>
+因為您已經獲得會議室的鑰匙，故不需登入即可發表意見。
+<br><br>
+
+<div class="well">
+<% @comments.each do |c| %>
+      <span class="label label-default">
+      <span class="glyphicon glyphicon-user"></span>
+      <strong><%= c.teacher.name %></strong> 
+      </span>
+      <small class="text-success">&nbsp;<%= c.updated_at.strftime("%Y/%m/%d %H:%M") %></small><br /><br />
+      <%= c.content %>
+      <br /><br />
+<% end %>
+</div>
+
+<br>
+<%= form_tag "comment", class: 'form-horizontal' do %> 
+   <%= hidden_field_tag 'token', @task.token %>
+
+   <%= text_area_tag :content, "", placeholder:"請輸入您對該特教生的觀察紀錄，或相關意見，至少25字...", class: "form-control", rows: "3" %>
+   <br />
+   <%= submit_tag "提交我的觀察紀錄", class: "btn btn-primary" %>
+<% end %>

@@ -13,6 +13,7 @@ class Admin::PostsController < ApplicationController
   def show
     @attachments = Attachment.where("post_id=?", @post.id)
     @students = Student.all
+    @comments = Comment.where("post_id=?", @post.id)
   end
 
   # GET /posts/new
@@ -48,6 +49,18 @@ class Admin::PostsController < ApplicationController
         format.json { render json: @post.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def comment
+     @comment = Comment.new
+     @comment.post_id = params[:id]
+     @comment.teacher_id = current_user.my_role_id
+     @comment.content = params[:content]
+     if @comment.save
+        redirect_to "/admin/posts/"+params[:id], :flass=>{:success=>"您已經順利留言！"}
+     else
+        redirect_to "/admin/posts/"+params[:id], :flass=>{:error=>"留言失敗，因為字數不足！"}
+     end
   end
 
   def download

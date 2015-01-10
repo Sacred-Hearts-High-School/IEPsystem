@@ -45,10 +45,8 @@
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="#">最新消息</a></li>
-            <li><a href="#">工作職掌</a></li>
-            <li><a href="#">音樂班</a></li>
-            <li><a href="#">美術班</a></li>
+             <li><a href="/posts">最新消息</a></li>
+             <li><a href="/posts/1">工作職掌</a></li>
           </ul>
           <form class="navbar-form navbar-right">
             <input type="text" class="form-control" placeholder="搜尋文章...">
@@ -61,10 +59,7 @@
       <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
           <ul class="nav nav-sidebar">
-            <li class="active"><a href="#">最新消息</a></li>
-            <li><a href="#">宣導文件</a></li>
-            <li><a href="#">研習訊息</a></li>
-            <li><a href="#">上傳IEP</a></li>
+            <li><a href="/posts">最新消息</a></li>
           </ul>
           <ul class="nav nav-sidebar">
              <li class="<%= 'active' if current_page?("/semesters") %>"><a href="/semesters">學期資料管理</a></li>
@@ -74,7 +69,7 @@
              <li class="<%= 'active' if current_page?("/admin/posts") %>"><a href="/admin/posts">張貼文章管理</a></li>
              <li class="<%= 'active' if current_page?("/admin/list_tasks") %>"><a href="/admin/list_tasks">任務管理</a></li>
              <li class="<%= 'active' if current_page?("/attachments") %>"><a href="/attachments">各式檔案管理</a></li>
-             <li><a href="/admin/menu">列印各式表單</a></li>
+             <li class="<%= 'active' if current_page?("/admin/menu") %>"><a href="/admin/menu">列印各式表單</a></li>
              <li><a href="/signout">登出系統</a></li>
           </ul>
           </ul>
@@ -84,8 +79,10 @@
 
           <div class="table-responsive">
 
-            <% flash.each do |name, msg| %>
-            <%= content_tag :div, msg, class: "alert alert-info" %>
+            <% flash.each do |key, msg| %>
+                  <div class="<%= flash_class(key) %>">
+                  <%= msg %>
+               </div>
             <% end %>
 
             <%= yield %>
@@ -110,7 +107,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <!-- Bootstrap Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-
     <script src="http://getbootstrap.com/assets/js/docs.min.js"></script>
 
 </body>

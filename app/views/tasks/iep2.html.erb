@@ -1,0 +1,25 @@
+<h1>IEP期末評量檔案上傳任務</h1>
+<br><br>
+<%= @task.teacher.name %>老師您好！
+
+請確定您現在準備要完成的任務細節如下：<br>
+
+<ol>
+   <li>班級： <%= @task.classroom.name %></li>
+   <li>學生： <%= @task.student.name %></li>
+   <li>教師： <%= @task.teacher.name %></li>
+   <li>類型： <%= @task.content %></li>
+</ol>
+
+請將您期初上傳的IEP計畫找出來，填入右方評量分數，以及下方的評語，然後上傳。<br>
+您期初若是沒有上傳，有可能是經過會議不需撰寫，請在下方選取正確按鈕即可。<br>
+也可能期初您沒有完成此項任務，那就辛苦一點，請<%= link_to "點這裡", "/103_IEP1.doc", :class=>"btn btn-info btn-xs" %>下載本學期 IEP 空白檔案進行修改。<br>
+不需登入即可完成任務，登入則可以顯示您尚未完成的所有任務。
+
+<br><br>
+<%= form_tag "upload", multipart: true do %> 
+   <%= hidden_field_tag 'token', @task.token %>
+   <%= file_field_tag 'datafile' %></p>
+   <%= submit_tag "上傳IEP完整檔案", class: "btn btn-primary" %>
+   <%= submit_tag "我的任課科目不須撰寫IEP", data: { confirm: "您的科目是否有經過會議決議，確定不須撰寫IEP？"}, class: "btn btn-warning" %>
+<% end %>

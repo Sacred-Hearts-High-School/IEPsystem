@@ -28,10 +28,16 @@
            case t.status
            when 0..40
               "尚未完成"
+           when 49 
+              "逾期未處理"
            when 50
               "不需處理"
            when 60
               "已上傳"
+           when 90
+              "審核通過"
+           when 100
+              "已結案"
            else
               t.status
            end

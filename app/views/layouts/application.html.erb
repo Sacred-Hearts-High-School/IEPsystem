@@ -47,6 +47,7 @@
           <ul class="nav navbar-nav navbar-right">
             <li><a href="/posts">最新消息</a></li>
             <li><a href="/posts/1">工作職掌</a></li>
+             <%= user_menu %>
           </ul>
           <form class="navbar-form navbar-right">
             <input type="text" class="form-control" placeholder="搜尋文章...">
@@ -71,8 +72,10 @@
 
           <div class="table-responsive">
 
-            <% flash.each do |name, msg| %>
-            <%= content_tag :div, msg, class: "alert alert-info" %>
+            <% flash.each do |key, msg| %>
+               <div class="<%= flash_class(key) %>">
+                  <%= msg %>
+               </div>
             <% end %>
 
             <%= yield %>
