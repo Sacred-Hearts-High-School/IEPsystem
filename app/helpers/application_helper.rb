@@ -11,7 +11,7 @@ module ApplicationHelper
          <li><a href=\"/classrooms\">班級資料管理</a></li>
          <li><a href=\"/admin/posts\">張貼文章管理</a></li>
          <li><a href=\"/attachments\">各式檔案管理</a></li>
-         <li><a href=\"/admin/menu\">列印各式表單</a></li>
+         <li><a href=\"/admin/menu\">管理者選單</a></li>
          <li><a href=\"/signout\">登出系統</a></li>".html_safe
       when current_user
          "<li><a href=\"/posts\">查看文章</a></li>

@@ -13,15 +13,24 @@ class TasksController < ApplicationController
       @comments = Comment.where("post_id=?",@task.post_id)
 
       case @task.genus
-      when 1
+      when 1   
+         # 期初 IEP
          if @task.status < 40    # 大於 40 表示不需處理
             render
          else
             render "dealt" and return
          end
       when 2
+         # 期末 IEP
          if @task.status < 40
             render "iep2"
+         else
+            render "dealt" and return
+         end
+      when 4   
+         # 期初導師會議紀錄
+         if @task.status < 40    # 大於 40 表示不需處理
+            render "iep4"
          else
             render "dealt" and return
          end

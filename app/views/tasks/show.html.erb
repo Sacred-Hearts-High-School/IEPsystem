@@ -1,7 +1,6 @@
 <h1>IEP檔案上傳任務</h1>
 <br><br>
 <%= @task.teacher.name %>老師您好！
-<%= @task.content %>
 
 請確定您現在準備要完成的任務細節如下：
 
@@ -9,7 +8,7 @@
    <li>班級： <%= @task.classroom.name %></li>
    <li>學生： <%= @task.student.name %></li>
    <li>教師： <%= @task.teacher.name %></li>
-   <li>類型： 103學年度上學期期初 IEP </li>
+   <li>類型： <%= @task.content %> </li>
 </ol>
 
 您可以<%= link_to "點這裡", "/103_IEP1.doc", :class=>"btn btn-info btn-xs" %>下載本學期 IEP 空白檔案進行修改。<br>

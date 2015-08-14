@@ -33,9 +33,10 @@ IEPsystem::Application.routes.draw do
   post 'tasks/comment' => 'tasks#comment'
 
   get 'admin/mailer' => 'admin#mailer'
+  get 'admin/close_tasks' => 'admin#close_tasks'
   get 'admin/edit_task/:id' => 'admin#edit_task'
   delete 'admin/delete_task/:id' => 'admin#delete_task'
-  get 'admin/create_tasks' => 'admin#create_tasks'
+  get 'admin/create_tasks/:id' => 'admin#create_tasks'
   get 'admin/create_tasks2/:id' => 'admin#create_tasks2'
   get 'admin/list_tasks' => 'admin#list_tasks'
   get 'admin/list_taskgroups' => 'admin#list_taskgroups'

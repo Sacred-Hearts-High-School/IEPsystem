@@ -1,0 +1,26 @@
+<h1>IEP會議記錄上傳任務</h1>
+<br><br>
+<%= @task.teacher.name %>導師您好！
+
+請確定您現在準備要完成的任務細節如下：
+
+<ol>
+   <li>班級： <%= @task.classroom.name %></li>
+   <li>學生： <%= @task.student.name %></li>
+   <li>教師： <%= @task.teacher.name %></li>
+   <li>類型： <%= @task.content %> </li>
+</ol>
+
+本檔案為導師才需要處理的，主要是期初IEP會議的內容紀錄。<br /><br />
+您可以<%= link_to "點這裡", "/guru.doc", :class=>"btn btn-info btn-xs" %>下載會議記錄範例檔案進行修改。<br>
+
+不需登入即可完成任務，登入則可以顯示尚未完成的所有任務。
+
+<br><br>
+
+<br><br>
+<%= form_tag "upload", multipart: true do %> 
+   <%= hidden_field_tag 'token', @task.token %>
+   <%= file_field_tag 'datafile' %></p>
+   <%= submit_tag "上傳會議記錄", class: "btn btn-primary" %>
+<% end %>

@@ -2,8 +2,9 @@ class AdminController < ApplicationController
 
    before_action :login_required, :admin_required
 
+   # 期初寄信內容
    def mailer
-      @tasks = Task.where("status=0")
+      @tasks = Task.where("status<40")
       @tasks.each do |t|
          if UserMailer.iep1_email(t.id).deliver
             t.status = t.status + 1
@@ -12,6 +13,19 @@ class AdminController < ApplicationController
       end
       redirect_to "/admin/list_tasks", notice: "任務通知寄信已經完成!"
    end
+
+   # 期末寄信內容
+   def mailer2
+      @tasks = Task.where("status<40")
+      @tasks.each do |t|
+         if UserMailer.iep2_email(t.id).deliver
+            t.status = t.status + 1
+            t.save!
+         end
+      end
+      redirect_to "/admin/list_tasks", notice: "任務通知寄信已經完成!"
+   end
+
 
    def list_taskgroups
       @taskgroups = Taskgroup.all
@@ -26,11 +40,25 @@ class AdminController < ApplicationController
       redirect_to "/admin/list_tasks"
    end
 
+
+   def close_tasks
+
+      @tasks = Task.where("status<40")
+
+      @tasks.each do |t|
+         t.status=49
+         t.save!
+      end
+
+      redirect_to "/admin/list_tasks", notice: "任務變更已經完成!"
+
+   end
+
    # 建立期初IEP檔案上傳任務
    def create_tasks
 
-      # 找出當前學期，這裡要修改！
-      @seme = Semester.find(5)
+      # 找出當前學期
+      @seme = Semester.find(params[:id])
       # 找出所有本學期的班級
       @classrooms = Classroom.where("semester_id=?",@seme.id)
 
@@ -62,6 +90,7 @@ class AdminController < ApplicationController
                @task.content = @seme.name + "期初IEP計畫"
                @task.post_id = @post.id
                @task.title = @seme.name + c.name + s.student.name + "期初IEP計畫-" + t.teacher.name
+               @task.genus = 1
                @task.status = 0
                @task.save!
                
@@ -75,6 +104,7 @@ class AdminController < ApplicationController
                   @task2.content = @seme.name + "期初IEP導師記錄"
                   @task2.post_id = @post.id
                   @task2.title = @seme.name + c.name + s.student.name + "期初IEP計畫會議記錄(導師"+t.teacher.name+")"
+                  @tasks2.genus = 4
                   @task2.status = 0
                   @task2.save!
                end
@@ -214,7 +244,7 @@ class AdminController < ApplicationController
              @msg += "<div class='kai'>"
              @msg += "<p><h1>雲林縣身心障礙學生個別化教育計畫擬定會議紀錄</h1></p><br />"
              @msg +="&nbsp;&nbsp;&nbsp;學校：正心中學   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;          日期：
-                             103年08月19日<br />"
+                             104年02月25日<br />"
              @msg += "&nbsp;&nbsp;&nbsp;學生姓名："+s.student.try(:name)
              @msg += "  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;      就讀班級："+c.name+"班 <br />"
                              
