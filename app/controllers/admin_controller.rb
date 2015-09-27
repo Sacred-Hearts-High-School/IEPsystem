@@ -242,9 +242,9 @@ class AdminController < ApplicationController
          @sinc.each do |s|
 
              @msg += "<div class='kai'>"
-             @msg += "<p><h1>雲林縣身心障礙學生個別化教育計畫擬定會議紀錄</h1></p><br />"
+             @msg += "<p><h1>雲林縣身心障礙學生個別化教育計畫檢討會議紀錄</h1></p><br />"
              @msg +="&nbsp;&nbsp;&nbsp;學校：正心中學   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;          日期：
-                             104年02月25日<br />"
+                             105年01月05日<br />"
              @msg += "&nbsp;&nbsp;&nbsp;學生姓名："+s.student.try(:name)
              @msg += "  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;      就讀班級："+c.name+"班 <br />"
                              

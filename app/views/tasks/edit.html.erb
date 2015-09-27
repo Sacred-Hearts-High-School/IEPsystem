@@ -1,0 +1,33 @@
+<h2>任務編輯</h2>
+
+<%= simple_form_for @task, :html=>{:class=>'form-horizontal'} do |f| %>
+
+
+      <div class="col-xs-12 col-sm-12 col-md-6 well well-sm">
+        <legend><i class="glyphicon glyphicon-globe"></i> 修改任務內容</legend>
+
+
+        <%= f.input :taskgroup_id %>
+        <%= f.input :classroom_id %>
+        <%= f.input :student_id %>
+        <%= f.input :teacher_id %>
+        <%= f.input :post_id %>
+        <%= f.input :title, :label=>true, :autofocus=>true,:required=>true %><br>
+        <%= f.input :content, :required=>true,:label=>false %>
+        <%= f.input :filename %>
+        <%= f.input :genus %>
+        <%= f.input :status %>
+        <%= f.input :comment %>
+        <%= f.input :token %>
+
+
+          <br />
+          <br />
+          <%= f.button :submit, "儲存任務", :class=>"btn btn-lg btn-block" %>
+
+
+
+      </div>
+
+<% end %>
+

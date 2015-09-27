@@ -46,10 +46,10 @@
    </tbody>
 </table>
 
-<%= form_tag("add_students", :method=>"post") do %>
+<%= form_tag("add_students", :method=>"post", :class=>"form-horizontal") do %>
     <div class="field">
-       在本班新增學生，請輸入學生姓名（可輸入多位，以空白分隔）：<br>
-       <%= text_field_tag "students" %>
+       在本班新增學生，請輸入學生姓名：<br>
+       <%= text_field_tag "students", "", :class=>"form-control", :placeholder=>"可輸入多位學生姓名，以空白分隔即可" %>
        <%= hidden_field_tag :id, @classroom.id %>
     </div>
     <div class="actions">
@@ -95,10 +95,10 @@
    </tbody>
 </table>
 
-<%= form_tag("add_teachers", :method=>"post") do %>
+<%= form_tag("add_teachers", :method=>"post", :class=>"form-horizontal") do %>
     <div class="field">
-       在本班新增任課教師，請輸入教師姓名（可輸入多位，以空白分隔）：<br>
-       <%= text_field_tag "teachers" %>
+       在本班新增任課教師，請輸入教師姓名：<br>
+       <%= text_field_tag "teachers", "", :class=>"form-control", :placeholder=>"可輸入多位教師姓名，以空白分隔即可"  %>
        <%= hidden_field_tag :id, @classroom.id %>
     </div>
     <div class="actions">

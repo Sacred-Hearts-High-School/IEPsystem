@@ -28,9 +28,11 @@ IEPsystem::Application.routes.draw do
   post 'classrooms/add_teachers' => 'classrooms#add_teachers'
 
   get 'tasks/my' => 'tasks#my'
+  get 'tasks/edit/:token' => 'tasks#edit'
   get 'tasks/:token' => 'tasks#show'
   post 'tasks/upload' => 'tasks#upload'
   post 'tasks/comment' => 'tasks#comment'
+  resources :tasks
 
   get 'admin/mailer' => 'admin#mailer'
   get 'admin/close_tasks' => 'admin#close_tasks'

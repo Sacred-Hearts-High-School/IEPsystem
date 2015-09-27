@@ -33,7 +33,7 @@
         <td><%= t.genus %></td>
         <td><%= statusStr(t.status).to_s.html_safe %></td>
         <td><%= t.updated_at.strftime("%Y/%m/%d %H:%M") %></td>
-        <td><%= link_to "<span class='glyphicon glyphicon-pencil'>".html_safe, "/admin/edit_task/"+t.token %></td>
+        <td><%= link_to "<span class='glyphicon glyphicon-pencil'>".html_safe, "/tasks/edit/"+t.token %></td>
         <td><%= link_to "<span class='glyphicon glyphicon-trash'>".html_safe, "/admin/delete_task/"+t.id.to_s, method: :delete, data: { confirm: "您確定要刪除此任務？" } %></td>
       </tr>
     <% end %>

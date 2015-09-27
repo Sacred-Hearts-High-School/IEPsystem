@@ -1,11 +1,41 @@
 class TasksController < ApplicationController
 
-   before_action :set_task, only: [:show,:comment,:upload]
+   before_action :set_task, only: [:show,:comment,:upload,:edit,:update]
 
    def my
       @teacher = Teacher.find_by(email: current_user.email)
       @tasks = Task.where("teacher_id=?", @teacher.id)
    end
+
+
+   def index
+      @tasks = Task.all
+   end
+
+
+   def edit
+   end
+
+   def update
+      respond_to do |format|
+         if @task.update(post_params)
+            format.html { redirect_to @task, notice: '任務已經成功變更。' }
+            format.json { head :no_content }
+         else
+            format.html { render action: 'edit' }
+            format.json { render json: @task.errors, status: :unprocessable_entity }
+         end
+      end
+   end
+
+
+   # 以下還沒設計
+   def new
+   end
+   def create
+   end
+
+
 
    def show
 
@@ -13,28 +43,35 @@ class TasksController < ApplicationController
       @comments = Comment.where("post_id=?",@task.post_id)
 
       case @task.genus
-      when 1   
+         when 1
          # 期初 IEP
-         if @task.status < 40    # 大於 40 表示不需處理
-            render
-         else
-            render "dealt" and return
-         end
-      when 2
+            if @task.status < 40    # 大於 40 表示不需處理
+               render
+            else
+               render "dealt" and return
+            end
+         when 2
          # 期末 IEP
-         if @task.status < 40
-            render "iep2"
-         else
-            render "dealt" and return
-         end
-      when 4   
-         # 期初導師會議紀錄
-         if @task.status < 40    # 大於 40 表示不需處理
-            render "iep4"
-         else
-            render "dealt" and return
-         end
-      when 8
+            if @task.status < 40
+               render "iep2"
+            else
+               render "dealt" and return
+            end
+         when 4
+         # 期初導師會議紀錄  （檔案型）
+            if @task.status < 40    # 大於 40 表示不需處理
+               render "iep4"
+            else
+               render "dealt" and return
+            end
+         when 5
+          # 期初導師會議記錄 （線上型）
+            if @task.status < 40    # 大於 40 表示不需處理
+               render "iep5"
+            else
+               render "dealt" and return
+            end
+         when 8
          render "comment"
       end
 

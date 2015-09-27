@@ -1,19 +1,24 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Email:</strong>
+  <strong>姓名：</strong>
+  <%= @teacher.name %>
+</p>
+
+<p>
+  <strong>電子郵件：</strong>
   <%= @teacher.email %>
 </p>
 
 <p>
-  <strong>Subject1:</strong>
+  <strong>任教科目1：</strong>
   <%= @teacher.subject1 %>
 </p>
 
 <p>
-  <strong>Subject2:</strong>
+  <strong>任教科目2：</strong>
   <%= @teacher.subject2 %>
 </p>
 
-<%= link_to 'Edit', edit_teacher_path(@teacher) %> |
-<%= link_to 'Back', teachers_path %>
+<%= link_to 'Edit', edit_teacher_path(@teacher), :class=>"btn btn-primary" %> |
+<%= link_to 'Back', teachers_path, :class=>"btn btn-primary" %>

@@ -5,19 +5,6 @@ SimpleForm.setup do |config|
   # wrapper, change the order or even add your own to the
   # stack. The options given below are used to wrap the
   # whole input.
-
-
-  # 指定boolean_style为inline，避免生成checkbox外面再套一個label
-  config.wrappers :checkbox, :tag => 'div', :class => 'control-group', :error_class => 'error', :boolean_style => :inline do |b|
-     b.use :label
-     b.wrapper :tag => 'div', :class => 'controls' do |input|
-     # 這裏自己手工生成一個label，input會生成checkbox和hidden
-        input.wrapper :tag => 'label', :class => 'checkbox' do |checkbox|
-           checkbox.use :input
-        end
-     end
-  end
-
   config.wrappers :default, class: :input,
     hint_class: :field_with_hint, error_class: :field_with_errors do |b|
     ## Extensions enabled by default
@@ -54,20 +41,12 @@ SimpleForm.setup do |config|
 
     ## Inputs
     b.use :label_input
-
-    b.wrapper :my_wrapper, :tag => 'div', :class => 'controls' do |ba|
-       ba.use :input
-       ba.use :error, :wrap_with => { :tag => 'span', :class => 'label label-important' }
-       ba.use :hint,  :wrap_with => { :tag => 'p', :class => 'help-block' }
-    end
-
     b.use :hint,  wrap_with: { tag: :span, class: :hint }
     b.use :error, wrap_with: { tag: :span, class: :error }
   end
 
   # The default wrapper to be used by the FormBuilder.
-  #config.default_wrapper = :default
-  config.default_wrapper = :my_wrapper
+  config.default_wrapper = :default
 
   # Define the way to render check boxes / radio buttons with labels.
   # Defaults to :nested for bootstrap config.
@@ -76,7 +55,7 @@ SimpleForm.setup do |config|
   config.boolean_style = :nested
 
   # Default class for buttons
-  config.button_class = 'btn btn-primary'
+  config.button_class = 'btn'
 
   # Method used to tidy up errors. Specify any Rails Array method.
   # :first lists the first message for each field.
@@ -119,7 +98,7 @@ SimpleForm.setup do |config|
   config.label_class = 'control-label'
 
   # You can define the class to use on all forms. Default is simple_form.
-  # config.form_class = :simple_form
+  config.form_class = "simple_form form-horizontal"
 
   # You can define which elements should obtain additional classes
   # config.generate_additional_classes_for = [:wrapper, :label, :input]
